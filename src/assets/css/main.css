@@ -1,0 +1,24 @@
+*{
+    max-width: 1360px;
+    margin: 0 auto;
+}
+
+.flex {
+    display: flex
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.w-full{
+    width: 100%;
+}
+
+.w-50{
+    width: 50%;
+}

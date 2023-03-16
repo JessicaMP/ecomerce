@@ -1,6 +1,32 @@
-.Navbar {}
+.Navbar {
+    padding: 1.5rem 0;
+    background-color: #3d3d3d;
+    color: white;
+}
 
 .navbar-logo {
     width: 2rem;
     heigth: 2rem;
+}
+
+.navbar-item {
+    border: none;
+    color: white;
+    background-color: transparent;
+    font-size: 1rem;
+    padding: 0 0.5rem;
+}
+
+.navbar-item:hover {
+    color: #61d9fb;
+}
+
+.navbar-business {
+    color: white;
+    text-decoration: none;
+}
+
+.navbar-business:hover {
+    color: #61d9fb;
+    font-size: 1.2rem;
 }
