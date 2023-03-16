@@ -1,4 +1,5 @@
 import Button from "../Atoms/Button/Button"
+import CartWidget from "../CartWidget/CartWidget"
 import logo from './../../logo.svg';
 import './Navbar.css'
 
@@ -13,7 +14,9 @@ const Navbar = () => {
                 <Button label="Promociones" buttonStyle="navbar-item"/>
                 <Button label="Mis Pedidos" buttonStyle="navbar-item"/>
             </div>
-            <div>carrito</div>
+            <div>
+                <CartWidget buttonStyle="navbar-item"/>
+            </div>
         </nav>
     )
 }
