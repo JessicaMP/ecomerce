@@ -11,8 +11,8 @@ const Navbar = () => {
                 <h1>Ecommerce</h1>
             </a>
             <div className="flex justify-between w-full">
-                <Button label="Promociones" buttonStyle="navbar-item"/>
-                <Button label="Mis Pedidos" buttonStyle="navbar-item"/>
+                <Button label="Promociones" buttonStyle="navbar-item" iconName=""/>
+                <Button label="Mis Pedidos" buttonStyle="navbar-item" iconName=""/>
             </div>
             <div>
                 <CartWidget buttonStyle="navbar-item"/>
