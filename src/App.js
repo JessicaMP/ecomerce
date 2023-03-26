@@ -7,25 +7,10 @@ function App() {
   return (
     <div>
       <Navbar />
+      <h1 className="text-3xl font-bold underline text-red-500">
+      Hello world!
+    </h1>
     </div>
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <h1>
-    //      Hola comision 39610
-    //     </h1>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //     <input />
-    //     <button>Botón</button>
-    //   </header>
-    // </div>
   );
 }
 
