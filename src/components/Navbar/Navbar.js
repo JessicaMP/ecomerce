@@ -14,6 +14,7 @@ const Navbar = () => {
           </a>
 
           <div className="flex justify-between w-6/12">
+            <Button label="Nuevos" buttonStyle="navbar-item" iconName="" />
             <Button label="Promociones" buttonStyle="navbar-item" iconName="" />
             <Button label="Mis Pedidos" buttonStyle="navbar-item" iconName="" />
             <div>
