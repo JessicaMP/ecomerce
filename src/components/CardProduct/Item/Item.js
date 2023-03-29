@@ -12,7 +12,7 @@ const Item = ({ id, name, img, price }) => {
       <section>
         <p className="flex justify-around text-xs">Precio: ${price}</p>
       </section>
-      <footer className="ItemFooter">
+      <footer className="flex justify-center">
         <Link to={`/item/${id}`} className="Option">
           Ver detalle
         </Link>
