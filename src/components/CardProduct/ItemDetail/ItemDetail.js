@@ -20,19 +20,19 @@ const ItemDetail = ({ id, name, img, category, description, price, stock }) => {
   };
 
   return (
-    <article className="p-8 m-8  bg-red-100 border border-solid border-gray-200 rounded-xl">
+    <article className="p-8 m-8 bg-red-100 border border-solid border-gray-200 rounded-xl">
       <header className="flex justify-center">
         <h2 className="font-semibold text-xl uppercase">{name}</h2>
       </header>
-      <picture>
-        <img src={img} alt={name} className="ItemImg" />
+      <picture className="flex justify-center">
+        <img src={img} alt={name} className="w-28 h-28 object-cover object-center" />
       </picture>
       <section className="space-y-3">
         <ItemDescription label="Categoria" description={category}/>
         <ItemDescription label="Descripción" description={description}/>
         <ItemDescription label="Precio" description={`$${price}`}/>
       </section>
-      <footer className="flex justify-center">
+      <footer className="flex justify-center mt-4">
         <ItemCount onAdd={handleOnAdd} stock={stock} />
       </footer>
     </article>

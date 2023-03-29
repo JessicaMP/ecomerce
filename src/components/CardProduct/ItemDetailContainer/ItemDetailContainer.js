@@ -19,7 +19,6 @@ const ItemDetailContainer = () => {
     return(
         <div className='flex flex-column justify-center items-center'>
             <ItemDetail  {...product} />
-            {/* hola */}
         </div>
     )
 }
