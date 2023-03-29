@@ -5,6 +5,7 @@ import ItemDetail from '../ItemDetail/ItemDetail'
 
 const ItemDetailContainer = () => {
     const [product, setProduct] = useState()
+    const [loading, setLoading] = useState(true)
 
     const { itemId } = useParams()
 
@@ -13,12 +14,14 @@ const ItemDetailContainer = () => {
             setProduct(response)
         }).catch(error => {
             console.log(error)
+        }).finally(()=> {
+            setLoading(false)
         })
     }, [itemId])
 
     return(
         <div className='flex flex-column justify-center items-center'>
-            <ItemDetail  {...product} />
+            {loading? <p>Cargando...</p>:<ItemDetail  {...product} />}
         </div>
     )
 }

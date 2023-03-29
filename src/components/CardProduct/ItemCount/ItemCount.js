@@ -5,7 +5,7 @@ import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 const ItemCount = ({ stock = 0, initial = 1, onAdd }) => {
   const [quantity, setQuantity] = useState(initial);
 
-const classButton = 'rounded-md w-auto p-3 text-xs bg-violet-600 flex justify-center items-center text-white cursor-pointer'
+const classButton = 'rounded-md w-auto p-3 text-xs bg-violet-600 hover:bg-opacity-80 flex justify-center items-center text-white cursor-pointer'
   const decrement = () => {
     if(quantity > 1) {
         setQuantity(quantity - 1)

@@ -6,6 +6,7 @@ import { getProducts, getProductsByCategory } from "../../../assets/data/mock"
 
 const ItemListContainer = ({ greeting }) => {
   const [products, setProducts] = useState([])
+  const [loading, setLoading] = useState(true)
 
   const { categoryId } = useParams()
 
@@ -18,13 +19,16 @@ const ItemListContainer = ({ greeting }) => {
             })
             .catch(error => {
                 console.log(error)
-            })
+            }).finally(()=> {
+              setLoading(false)
+          })
     }, [categoryId])
 
   return (
     <div className="container mx-auto py-4">
       <h1 className="text-center text-black font-bold text-xl"> {greeting}</h1>
-      <ItemList products={products}/>
+      {loading? <p>Cargando...</p>: <ItemList products={products}/>}
+      
     </div>
   );
 };

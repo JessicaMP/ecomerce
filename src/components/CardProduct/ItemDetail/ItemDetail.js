@@ -3,7 +3,7 @@ import ItemCount from "../ItemCount/ItemCount";
 const ItemDescription = ({ label, description }) => {
   return (
     <p className="text-sm text-center">
-      <span className="font-medium text-xs">{label}:</span> {description}
+      <span className="font-semibold text-xs">{label}:</span> {description}
     </p>
   );
 };
@@ -20,7 +20,7 @@ const ItemDetail = ({ id, name, img, category, description, price, stock }) => {
   };
 
   return (
-    <article className="p-8 m-8 bg-red-100 border border-solid border-gray-200 rounded-xl">
+    <article className="p-8 m-8 bg-red-100 border border-solid border-gray-200 rounded-xl space-y-4">
       <header className="flex justify-center">
         <h2 className="font-semibold text-xl uppercase">{name}</h2>
       </header>
@@ -32,7 +32,7 @@ const ItemDetail = ({ id, name, img, category, description, price, stock }) => {
         <ItemDescription label="Descripción" description={description}/>
         <ItemDescription label="Precio" description={`$${price}`}/>
       </section>
-      <footer className="flex justify-center mt-4">
+      <footer className="flex justify-center ">
         <ItemCount onAdd={handleOnAdd} stock={stock} />
       </footer>
     </article>
