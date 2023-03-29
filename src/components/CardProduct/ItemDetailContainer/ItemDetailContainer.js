@@ -17,8 +17,9 @@ const ItemDetailContainer = () => {
     }, [itemId])
 
     return(
-        <div className='flex flex-column justify-center items-center' >
+        <div className='flex flex-column justify-center items-center'>
             <ItemDetail  {...product} />
+            {/* hola */}
         </div>
     )
 }
