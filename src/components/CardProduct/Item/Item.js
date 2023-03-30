@@ -1,6 +1,6 @@
 const Item = ({ name, img, footer, aditionalSection}) => {
   return (
-    <article className="p-8 m-8 bg-red-100 border border-solid border-gray-200 rounded-xl space-y-4">
+    <article className="p-8 m-8 bg-violet-600 bg-opacity-10 border border-solid border-gray-200 rounded-xl space-y-4">
       <header className="flex justify-center">
         <h2 className="font-semibold text-xl uppercase">{name}</h2>
       </header>

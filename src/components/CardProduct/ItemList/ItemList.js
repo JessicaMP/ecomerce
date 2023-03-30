@@ -9,7 +9,7 @@ const ItemContainer = (prod) => {
         <p className="flex justify-around text-xs">Precio: ${prod.price}</p>
       }
       footer={
-        <Link to={`/item/${prod.id}`} className="Option">
+        <Link to={`/item/${prod.id}`} className="rounded-md w-auto p-3 text-xs bg-violet-600 hover:bg-opacity-80 flex justify-center items-center text-white cursor-pointer">
           Ver detalle
         </Link>
       }
