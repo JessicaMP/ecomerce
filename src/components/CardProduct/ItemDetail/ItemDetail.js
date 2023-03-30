@@ -1,4 +1,21 @@
 import ItemCount from "../ItemCount/ItemCount";
+import Item from "../Item/Item";
+
+const ItemContainer = ({ prod, action }) => {
+  return (
+    <Item
+      {...prod}
+      aditionalSection={
+        <section className="space-y-3">
+          <ItemDescription label="Categoria" description={prod.category} />
+          <ItemDescription label="Descripción" description={prod.description} />
+          <ItemDescription label="Precio" description={`$${prod.price}`} />
+        </section>
+      }
+      footer={<ItemCount onAdd={action} stock={prod.stock} />}
+    />
+  );
+};
 
 const ItemDescription = ({ label, description }) => {
   return (
@@ -8,35 +25,18 @@ const ItemDescription = ({ label, description }) => {
   );
 };
 
-const ItemDetail = ({ id, name, img, category, description, price, stock }) => {
+const ItemDetail = (prod) => {
   const handleOnAdd = (quantity) => {
     const productToAdd = {
-      id,
-      name,
-      price,
+      id: prod.id,
+      name: prod.name,
+      price: prod.price,
       quantity,
     };
     console.log({ productToAdd });
   };
 
-  return (
-    <article className="p-8 m-8 bg-red-100 border border-solid border-gray-200 rounded-xl space-y-4">
-      <header className="flex justify-center">
-        <h2 className="font-semibold text-xl uppercase">{name}</h2>
-      </header>
-      <picture className="flex justify-center">
-        <img src={img} alt={name} className="w-28 h-28 object-cover object-center" />
-      </picture>
-      <section className="space-y-3">
-        <ItemDescription label="Categoria" description={category}/>
-        <ItemDescription label="Descripción" description={description}/>
-        <ItemDescription label="Precio" description={`$${price}`}/>
-      </section>
-      <footer className="flex justify-center ">
-        <ItemCount onAdd={handleOnAdd} stock={stock} />
-      </footer>
-    </article>
-  );
+  return <ItemContainer key={prod.id} prod={prod} action={handleOnAdd} />;
 };
 
 export default ItemDetail;

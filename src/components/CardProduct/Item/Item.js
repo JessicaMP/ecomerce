@@ -1,21 +1,19 @@
-import { Link } from "react-router-dom";
-
-const Item = ({ id, name, img, price }) => {
+const Item = ({ name, img, footer, aditionalSection}) => {
   return (
-    <article className="p-8 m-8 bg-red-100 border-solid border-2 border-gray-100 rounded-xl text-xs">
-      <header className="flex flex-col mb-2.5 rounded-3xl">
-        <h2 className="flex justify-center">{name}</h2>
+    <article className="p-8 m-8 bg-red-100 border border-solid border-gray-200 rounded-xl space-y-4">
+      <header className="flex justify-center">
+        <h2 className="font-semibold text-xl uppercase">{name}</h2>
       </header>
-      <picture>
-        <img src={img} alt={name} />
+      <picture className="flex justify-center">
+        <img
+          src={img}
+          alt={name}
+          className="w-28 h-28 object-cover object-center"
+        />
       </picture>
-      <section>
-        <p className="flex justify-around text-xs">Precio: ${price}</p>
-      </section>
-      <footer className="flex justify-center">
-        <Link to={`/item/${id}`} className="Option">
-          Ver detalle
-        </Link>
+      {aditionalSection}
+      <footer className="flex justify-center ">
+        {footer}
       </footer>
     </article>
   );
