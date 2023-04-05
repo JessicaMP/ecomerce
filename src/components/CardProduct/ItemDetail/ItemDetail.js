@@ -1,7 +1,24 @@
 import ItemCount from "../ItemCount/ItemCount";
 import Item from "../Item/Item";
+import { useCart } from "../../../context/CartContext";
+import { Link } from "react-router-dom";
+
+const classButton =
+  "rounded-md w-auto p-3 text-xs border border-violet-600 text-violet-600 hover:bg-violet-600 hover:bg-opacity-80  hover:text-white cursor-pointer";
 
 const ItemContainer = ({ prod, action }) => {
+  const { isInCart, addItem } = useCart();
+
+  const handleOnAdd = (quantity) => {
+    const productToAdd = {
+      id: prod.id,
+      name: prod.name,
+      price: prod.price,
+      quantity,
+    };
+    addItem(productToAdd);
+  };
+
   return (
     <Item
       {...prod}
@@ -12,7 +29,16 @@ const ItemContainer = ({ prod, action }) => {
           <ItemDescription label="Precio" description={`$${prod.price}`} />
         </section>
       }
-      footer={<ItemCount onAdd={action} stock={prod.stock} />}
+      footer={
+        <div className="flex flex-col items-center space-y-4">
+          <ItemCount onAdd={handleOnAdd} stock={prod.stock} />
+          {isInCart(prod.id) && (
+            <Link to="/cart" className={classButton}>
+              Terminar compra
+            </Link>
+          )}
+        </div>
+      }
     />
   );
 };
