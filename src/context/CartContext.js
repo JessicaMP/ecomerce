@@ -19,8 +19,19 @@ export const CartProvider = ({ children }) => {
     }
   };
 
+  const getTotalQuantity = () => {
+    let totalQuantity = 0;
+    if (cart.length === 0) return totalQuantity;
+    totalQuantity = cart.reduce((accumulator, currentValue) => {
+      return accumulator?.quantity + currentValue?.quantity;
+    });
+    return totalQuantity;
+  };
+
+  const totalQuantity = getTotalQuantity();
+
   return (
-    <CartContext.Provider value={{ isInCart, addItem }}>
+    <CartContext.Provider value={{ isInCart, addItem, totalQuantity }}>
       {children}
     </CartContext.Provider>
   );
