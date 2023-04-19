@@ -1,8 +1,7 @@
 import ItemList from "../ItemList/ItemList";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-// import { getProducts, getProductsByCategory } from "../../../assets/data/mock";
-import { getDocs, collection } from "firebase/firestore";
+import { getDocs, collection, query, where } from "firebase/firestore";
 import { db } from "../../../services/firebase/firebaseConfig";
 
 const NotContent = ({ label }) => {
@@ -27,34 +26,26 @@ const ItemListContainer = ({ greeting }) => {
   const { categoryId } = useParams();
 
   useEffect(() => {
-    setLoading(true);
-
-    const fetchProducts = async () => {
-      const productsRef = collection(db, "products");
+    const fetchProducts = async (filterSearch) => {
+      setLoading(true);
+      const productsRef = filterSearch;
       const { docs = [] } = await getDocs(productsRef);
-      const newDocs = setStructure(docs);
-      console.log({ newDocs });
+      let newDocs = docs;
+      try {
+        newDocs = setStructure(docs);
+      } catch (error) {
+        console.log({ error });
+      }
+      setLoading(false);
       setProducts(newDocs);
     };
 
-    // getDocs(productsRef).then((snapshot) => {
-    //   console.log({ snapshot });
-    // });
+    const allProducts = collection(db, "products");
+    const filterItem = categoryId
+      ? query(allProducts, where("category", "==", categoryId))
+      : allProducts;
 
-    // const asyncFunction = categoryId ? getProductsByCategory : getProducts;
-    // setLoading(true);
-    // asyncFunction(categoryId)
-    //   .then((products) => {
-    //     setProducts(products);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   })
-    //   .finally(() => {
-    //     setLoading(false);
-    //   });
-    fetchProducts();
-    setLoading(false);
+    fetchProducts(filterItem);
   }, [categoryId]);
 
   return (
