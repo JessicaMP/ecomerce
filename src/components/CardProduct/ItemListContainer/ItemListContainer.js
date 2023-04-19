@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getDocs, collection, query, where } from "firebase/firestore";
 import { db } from "../../../services/firebase/firebaseConfig";
+import { setStructure } from "../../../utils";
 
 const NotContent = ({ label }) => {
   return (
@@ -10,13 +11,6 @@ const NotContent = ({ label }) => {
       <p className="font-medium text-base">{label}</p>
     </div>
   );
-};
-
-const setStructure = (products) => {
-  return products.map((product) => {
-    const data = product.data();
-    return { id: product.id, ...data };
-  });
 };
 
 const ItemListContainer = ({ greeting }) => {
