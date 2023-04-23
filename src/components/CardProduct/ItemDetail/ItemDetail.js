@@ -14,6 +14,7 @@ const ItemContainer = ({ prod, action }) => {
       id: prod.id,
       name: prod.name,
       price: prod.price,
+      img: prod.img,
       quantity,
     };
     addItem(productToAdd);
