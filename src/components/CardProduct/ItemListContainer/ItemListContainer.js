@@ -1,15 +1,17 @@
 import ItemList from "../ItemList/ItemList";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getProducts, getProductsByCategory } from "../../../assets/data/mock";
+import { getDocs, collection, query, where } from "firebase/firestore";
+import { db } from "../../../services/firebase/firebaseConfig";
+import { setStructure } from "../../../utils";
 
-const NotContent = ({label}) => {
+const NotContent = ({ label }) => {
   return (
     <div className="flex justify-center items-center p-10">
-    <p className="font-medium text-base">{label}</p>
+      <p className="font-medium text-base">{label}</p>
     </div>
-  )
-}
+  );
+};
 
 const ItemListContainer = ({ greeting }) => {
   const [products, setProducts] = useState([]);
@@ -18,18 +20,26 @@ const ItemListContainer = ({ greeting }) => {
   const { categoryId } = useParams();
 
   useEffect(() => {
-    const asyncFunction = categoryId ? getProductsByCategory : getProducts;
-    setLoading(true);
-    asyncFunction(categoryId)
-      .then((products) => {
-        setProducts(products);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    const fetchProducts = async (filterSearch) => {
+      setLoading(true);
+      const productsRef = filterSearch;
+      const { docs = [] } = await getDocs(productsRef);
+      let newDocs = docs;
+      try {
+        newDocs = setStructure(docs);
+      } catch (error) {
+        console.log({ error });
+      }
+      setLoading(false);
+      setProducts(newDocs);
+    };
+
+    const allProducts = collection(db, "products");
+    const filterItem = categoryId
+      ? query(allProducts, where("category", "==", categoryId))
+      : allProducts;
+
+    fetchProducts(filterItem);
   }, [categoryId]);
 
   return (
@@ -40,7 +50,7 @@ const ItemListContainer = ({ greeting }) => {
       ) : products.length > 0 ? (
         <ItemList products={products} />
       ) : (
-       <NotContent label={`No hay productos en la categoria ${categoryId}`}/>
+        <NotContent label={`No hay productos en la categoria ${categoryId}`} />
       )}
     </div>
   );
